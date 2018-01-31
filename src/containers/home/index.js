@@ -1,48 +1,66 @@
 import React from 'react'
-import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {
-  increment,
-  incrementAsync,
-  decrement,
-  decrementAsync
-} from '../../modules/counter'
+import styled from 'styled-components';
+import TimerContainer from '../timerContainer';
+import EnterBtn from '../enterBtn';
 
 const Home = props => (
   <div>
-    <h1>Home</h1>
-    <p>Count: {props.count}</p>
+    <HeaderStyled>
+      <img src="img/glamcam-logo.png" alt="glamcam"/>
+    </HeaderStyled>
+    <ContainerStyledDiv>
+      <TitleStyledH1>Giveaway</TitleStyledH1>
+      <TimerContainer/>
+      <WrapperBtn>
+        <EnterBtn/>
+      </WrapperBtn>
 
-    <p>
-      <button onClick={props.increment} disabled={props.isIncrementing}>Increment</button>
-      <button onClick={props.incrementAsync} disabled={props.isIncrementing}>Increment Async</button>
-    </p>
-
-    <p>
-      <button onClick={props.decrement} disabled={props.isDecrementing}>Decrement</button>
-      <button onClick={props.decrementAsync} disabled={props.isDecrementing}>Decrement Async</button>
-    </p>
-
-    <p><button onClick={() => props.changePage()}>Go to about page via redux</button></p>
+      
+    </ContainerStyledDiv>
   </div>
-)
+);
 
 const mapStateToProps = state => ({
-  count: state.counter.count,
-  isIncrementing: state.counter.isIncrementing,
-  isDecrementing: state.counter.isDecrementing
-})
+
+});
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  increment,
-  incrementAsync,
-  decrement,
-  decrementAsync,
-  changePage: () => push('/about-us')
-}, dispatch)
+
+}, dispatch);
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Home)
+
+const HeaderStyled = styled.header`
+  position: absolute;
+  padding: 30px;
+  width: 100%;
+  
+  img {
+    display: block;
+    margin: 0 auto;
+    width: 250px;
+  }
+`;
+const ContainerStyledDiv = styled.div`
+  padding: 30px 0;
+  background: #F29397;
+`;
+
+const TitleStyledH1 = styled.div`
+  margin: 30px 0;
+  font-family: DINProCondensedRegular;
+  font-size: 100px;
+  font-weight: bold;
+  color: #ffffff;			
+  text-align: center;
+  text-transform: uppercase;
+`;
+
+const WrapperBtn = styled.div`
+
+`;
